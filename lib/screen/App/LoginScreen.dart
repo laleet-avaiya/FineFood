@@ -1,11 +1,23 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'HomeScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final _phoneController = TextEditingController();
   final _codeController = TextEditingController();
   static FirebaseUser user;
+  String _code;
+  String signature;
+
+
+
+
 
   Future<bool> loginUser(String phone, BuildContext context) async {
     FirebaseAuth _auth = FirebaseAuth.instance;
@@ -42,9 +54,15 @@ class LoginScreen extends StatelessWidget {
               builder: (context) {
                 return AlertDialog(
                   title: Text("Enter Verification code."),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
                   content: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
+//                      PinFieldAutoFill(
+//                        decoration: UnderlineDecoration(
+//                            textStyle: TextStyle(fontSize: 20, color: Colors.black)),
+//                        currentCode: _code,
+//                      ),
                       TextField(
                         controller: _codeController,
                       ),
@@ -58,11 +76,11 @@ class LoginScreen extends StatelessWidget {
                       onPressed: () async {
                         final code = _codeController.text.trim();
                         AuthCredential credential =
-                        PhoneAuthProvider.getCredential(
-                            verificationId: verificationId, smsCode: code);
+                            PhoneAuthProvider.getCredential(
+                                verificationId: verificationId, smsCode: code);
 
                         AuthResult result =
-                        await _auth.signInWithCredential(credential);
+                            await _auth.signInWithCredential(credential);
 
                         FirebaseUser user = result.user;
 
@@ -82,6 +100,12 @@ class LoginScreen extends StatelessWidget {
               });
         },
         codeAutoRetrievalTimeout: null);
+  }
+
+  @override
+  void dispose() {
+    SmsAutoFill().unregisterListener();
+    super.dispose();
   }
 
   @override
@@ -111,10 +135,12 @@ class LoginScreen extends StatelessWidget {
                       TextFormField(
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(8)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8)),
                               borderSide: BorderSide(color: Colors.grey[200])),
                           focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(8)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8)),
                               borderSide: BorderSide(color: Colors.grey[300])),
                           filled: true,
                           fillColor: Colors.grey[100],
@@ -132,8 +158,9 @@ class LoginScreen extends StatelessWidget {
                           child: Text("LOGIN"),
                           textColor: Colors.white,
                           padding: EdgeInsets.all(16),
-                          onPressed: () {
+                          onPressed: () async {
                             final phone = _phoneController.text.trim();
+//                            signature = await SmsAutoFill().getAppSignature;
                             loginUser(phone, context);
                           },
                           color: Colors.green,

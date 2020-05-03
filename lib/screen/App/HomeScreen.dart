@@ -12,42 +12,8 @@ import '../../models/Order.dart';
 import '../../models/User.dart';
 import '../../models/FoodProduct.dart';
 
-//class HomeScreen extends StatelessWidget {
-//
-//  final FirebaseUser user;
-//
-//  HomeScreen({this.user});
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    return Scaffold(
-//      body: Container(
-//        padding: EdgeInsets.all(32),
-//        child: Column(
-//          mainAxisAlignment: MainAxisAlignment.center,
-//          crossAxisAlignment: CrossAxisAlignment.start,
-//          children: <Widget>[
-//            Text("You are Logged in succesfully", style: TextStyle(color: Colors.lightBlue, fontSize: 32),),
-//            SizedBox(height: 16,),
-//            Text("${user.phoneNumber}", style: TextStyle(color: Colors.grey, ),),
-//          ],
-//        ),
-//      ),
-//    );
-//  }
-//}
-
-
-
-
-
-
 class HomeScreen extends StatelessWidget {
-  // This widget is the root of your application.
-
-  HomeScreen({this.user, this.title});
-
-  final String title;
+  HomeScreen({this.user});
   final FirebaseUser user;
 
   @override
@@ -57,17 +23,16 @@ class HomeScreen extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: _HomeScreen(title: 'Fine Food',user: user,),
+      home: _HomeScreen(title: 'Fine Food', user: user),
     );
   }
 }
 
 class _HomeScreen extends StatefulWidget {
-  _HomeScreen({Key key, this.title,this.user}) : super(key: key);
+  _HomeScreen({Key key, this.title, this.user}) : super(key: key);
 
   final String title;
   final FirebaseUser user;
-
 
   @override
   __HomeScreen createState() => __HomeScreen();
@@ -174,12 +139,15 @@ class __HomeScreen extends State<_HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-            actions: <Widget>[
-              IconButton(icon: Icon(Icons.shopping_cart), onPressed: () {}),
-              IconButton(icon: Icon(Icons.supervisor_account), onPressed: () {
-
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.shopping_cart),
+              onPressed: () {
+                print(widget.user.toString());
+                Navigator.popUntil(context, ModalRoute.withName("/"));
               }),
-            ],
+          IconButton(icon: Icon(Icons.supervisor_account), onPressed: () {}),
+        ],
       ),
       body: Center(
         child: Column(
@@ -240,7 +208,7 @@ class __HomeScreen extends State<_HomeScreen> {
                                 onPressed: _incrementCounter,
                                 shape: new RoundedRectangleBorder(
                                     borderRadius:
-                                    new BorderRadius.circular(10.0))),
+                                        new BorderRadius.circular(10.0))),
                           ],
                         )
                       ],
@@ -249,60 +217,66 @@ class __HomeScreen extends State<_HomeScreen> {
                   Text("\n"),
                   (_counter > 0)
                       ? Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(""),
-                          Text(
-                            "\nOrder Details:\n",
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-
-                          Text(
-                              " Puff \t\t\t\t\t\t\t\t\t $_counter \t\t\t\t\t\t\t\t\t\t Rs. 10 * $_counter = $_total \n"),
-                          Text("\n"),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              new OutlineButton(
-                                  child: new Text("Clear Cart"),
-                                  onPressed: _clearCart,
-                                  shape: new RoundedRectangleBorder(
-                                      borderRadius:
-                                      new BorderRadius.circular(
-                                          10.0))),
-                              Text("  "),
-                              new OutlineButton(
-                                  child: new Text("Remove Item"),
-                                  onPressed: _removeItem,
-                                  shape: new RoundedRectangleBorder(
-                                      borderRadius:
-                                      new BorderRadius.circular(
-                                          10.0))),
-                              Text("  "),
-                              new OutlineButton(
-                                  child: new Text("Place Order"),
-                                  onPressed: () {
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(""),
+                                Text(
+                                  "\nOrder Details:\n",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                    " Puff \t\t\t\t\t\t\t\t\t $_counter \t\t\t\t\t\t\t\t\t\t Rs. 10 * $_counter = $_total \n"),
+                                Text("\n"),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    new OutlineButton(
+                                        child: new Text("Clear Cart"),
+                                        onPressed: _clearCart,
+                                        shape: new RoundedRectangleBorder(
+                                            borderRadius:
+                                                new BorderRadius.circular(
+                                                    10.0))),
+                                    Text("  "),
+                                    new OutlineButton(
+                                        child: new Text("Remove Item"),
+                                        onPressed: _removeItem,
+                                        shape: new RoundedRectangleBorder(
+                                            borderRadius:
+                                                new BorderRadius.circular(
+                                                    10.0))),
+                                    Text("  "),
+                                    new OutlineButton(
+                                        child: new Text("Place Order"),
+                                        onPressed: () {
 //                                          _placeOrder(ref);
-                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => PaymentScreen(amount: _total.toString(),callback:_placeOrder)));
-                                  },
-                                  shape: new RoundedRectangleBorder(
-                                      borderRadius:
-                                      new BorderRadius.circular(
-                                          10.0))),
-                            ],
-                          )
-                        ],
-                      )
-                    ],
-                  )
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      PaymentScreen(
+                                                          amount:
+                                                              _total.toString(),
+                                                          callback:
+                                                              _placeOrder)));
+                                        },
+                                        shape: new RoundedRectangleBorder(
+                                            borderRadius:
+                                                new BorderRadius.circular(
+                                                    10.0))),
+                                  ],
+                                )
+                              ],
+                            )
+                          ],
+                        )
                       : Text(""),
                   (items.length > 1)
                       ? Text(items[0].foodProduct.name.toString())
@@ -322,6 +296,3 @@ class __HomeScreen extends State<_HomeScreen> {
     );
   }
 }
-
-
-
