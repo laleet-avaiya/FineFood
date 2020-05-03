@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "768548740146",
+    "firebase_url": "https://puff-app-78258.firebaseio.com",
+    "project_id": "puff-app-78258",
+    "storage_bucket": "puff-app-78258.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:768548740146:android:1aca5fa8a7e1149a03f02b",
+        "android_client_info": {
+          "package_name": "com.masoftware.finefood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "768548740146-m3q77dvqfh6b4jsm5de5ahsdtpp2dor9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDS9C_wykXm9YtlegzGfkK3Av1_bXMQkRM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "768548740146-m3q77dvqfh6b4jsm5de5ahsdtpp2dor9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

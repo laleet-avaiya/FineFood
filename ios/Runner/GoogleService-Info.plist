@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>768548740146-449isdumgvd48a2m0dbldpcnq18q8q66.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.768548740146-449isdumgvd48a2m0dbldpcnq18q8q66</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCAAw5e9H2bL8buZz95w9UEd_xc7LOsyM0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>768548740146</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.masoftware.finefood</string>
+	<key>PROJECT_ID</key>
+	<string>puff-app-78258</string>
+	<key>STORAGE_BUCKET</key>
+	<string>puff-app-78258.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:768548740146:ios:0fc4dab27b6cfefd03f02b</string>
+	<key>DATABASE_URL</key>
+	<string>https://puff-app-78258.firebaseio.com</string>
+</dict>
+</plist>
